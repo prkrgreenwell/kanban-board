@@ -13,18 +13,18 @@ export const Signup = (props) => {
 
   return (
    
-    <>
-    <form onSubmit={handleSubmit}>
+    <div className="auth-form">
+    <form className="signup-form" onSubmit={handleSubmit}>
       <label for='name'>Name</label>
       <input value={name} onChange={(e) => setName(e.target.value)} type="name" placeholder="your name" id="name"/>
       <label for="email">Email</label>
       <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email.com" id="email"/>
       <label for="password">Password</label>
       <input value={pass} onChange={(e) => setPass(e.target.value)}type="password" placeholder="******" id="password"/>
-      <button type="submit">Log In</button>
+      <button className="clickBtn" type="submit">Sign up</button>
     </form>
-    <button onClick={() => props.onFormSwitch('login')}>Already have an account? Log in here</button>
-    </>
+    <button className="linkBtn" onClick={() => props.onFormSwitch('login')}>Already have an account? Log in here</button>
+    </div>
     
   )
 }
