@@ -21,6 +21,8 @@ const Login = (props) => {
 			Auth.login(data.login.token);
 		} catch (e) {
 			console.error(e);
+			console.log(error);
+			console.log(e.graphQLErrors[0].extensions.exception.errors);
 		}
 	};
 
@@ -31,7 +33,7 @@ const Login = (props) => {
 				<Link to='/Dashboard'>dashboard</Link>
 			) : (
 				<form className='login-form' onSubmit={handleSubmit}>
-					<label for='email'>Email</label>
+					<label htmlfor='email'>Email</label>
 					<input
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
@@ -39,7 +41,7 @@ const Login = (props) => {
 						placeholder='email.com'
 						id='email'
 					/>
-					<label for='password'>Password</label>
+					<label htmlfor='password'>Password</label>
 					<input
 						value={pass}
 						onChange={(e) => setPass(e.target.value)}

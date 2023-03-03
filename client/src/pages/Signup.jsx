@@ -17,10 +17,11 @@ const Signup = (props) => {
 		console.log(email, pass, name);
 		try {
 			const { data } = await addUser({
-				variables: { email, pass, name },
+				variables: { email, username: name, password: pass },
 			});
 
 			Auth.login(data.addUser.token);
+			console.log(data.addUser.token);
 		} catch (e) {
 			console.error(e);
 		}
