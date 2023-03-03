@@ -7,22 +7,20 @@ import Auth from '../utils/auth';
 
 const Login = (props) => {
 	const [email, setEmail] = useState('');
-	const [pass, setPass] = useState('');
+	const [password, setPass] = useState('');
 	const [login, { error, data }] = useMutation(LOGIN_USER);
-
+	console.log(login)
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(email, pass);
+		console.log(email, password);
 		try {
 			const { data } = await login({
-				variables: { email, pass },
+				variables: { email, password},
 			});
-
+console.log(data)
 			Auth.login(data.login.token);
 		} catch (e) {
 			console.error(e);
-			console.log(error);
-			console.log(e.graphQLErrors[0].extensions.exception.errors);
 		}
 	};
 
@@ -33,7 +31,7 @@ const Login = (props) => {
 				<Link to='/Dashboard'>dashboard</Link>
 			) : (
 				<form className='login-form' onSubmit={handleSubmit}>
-					<label htmlfor='email'>Email</label>
+					<label htmlFor='email'>Email</label>
 					<input
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
@@ -41,9 +39,9 @@ const Login = (props) => {
 						placeholder='email.com'
 						id='email'
 					/>
-					<label htmlfor='password'>Password</label>
+					<label htmlFor='password'>Password</label>
 					<input
-						value={pass}
+						value={password}
 						onChange={(e) => setPass(e.target.value)}
 						type='password'
 						placeholder='******'

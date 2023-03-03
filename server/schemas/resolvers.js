@@ -41,16 +41,16 @@ const resolvers = {
 	Project: {
 		//Fetch all tasks associated with a project
 		tasks: async (parent) => {
-			const tasks = await Task.find({ projectId: parent._id });
-			return tasks;
+		  const tasks = await Task.find({ projectId: parent._id });
+		  return tasks;
 		},
-
+	  
 		//Fetch the user associated with a project
 		user: async (parent) => {
-			const user = await User.findById(parent.userId);
-			return user;
+		  const user = await User.findById(parent.userId);
+		  return user;
 		},
-	},
+	  },
 	Mutation: {
 		createProject: async (parent, { title }, context) => {
 			if (!context.user) {
@@ -68,6 +68,7 @@ const resolvers = {
 			return task;
 		},
 		login: async (parent, { email, password }) => {
+			console.log("test")
 			const user = await User.findOne({ email });
 
 			if (!user) {
