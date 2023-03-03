@@ -11,9 +11,10 @@ type User {
 type Project {
     _id: ID
     title: String
-    user: String
+    userId: ID
+    user: User
     tasks: [Task]
-}
+  }
 
 type Task {
     _id: ID
