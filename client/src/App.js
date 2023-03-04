@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-
 import './App.css';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
+import Header from './components/Header';
 import {
 	ApolloClient,
 	InMemoryCache,
 	ApolloProvider,
 	createHttpLink,
 } from '@apollo/client';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({
@@ -35,20 +37,20 @@ const client = new ApolloClient({
 });
 
 function App() {
-	const [currentForm, setCurrentForm] = useState('login');
-	const toggleForm = (formName) => {
-		setCurrentForm(formName);
-	};
-
 	return (
 		<ApolloProvider client={client}>
-			<div className='App'>
-				{currentForm === 'login' ? (
-					<Login onFormSwitch={toggleForm} />
-				) : (
-					<Signup onFormSwitch={toggleForm} />
-				)}
-			</div>
+			<Router>
+				<div className='App'>
+					<Header />
+					<Routes>
+						<Route path='/' element={<Home />} />
+						<Route path='/login' element={<Login />} />
+						<Route path='/signup' element={<Signup />} />
+						{/* <Route path='/me' element={<Dashboard />} /> */}
+						<Route path='/dashboard' element={<Dashboard />} />
+					</Routes>
+				</div>
+			</Router>
 		</ApolloProvider>
 	);
 }

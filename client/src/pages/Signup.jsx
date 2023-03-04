@@ -8,16 +8,16 @@ import Auth from '../utils/auth';
 
 const Signup = (props) => {
 	const [email, setEmail] = useState('');
-	const [pass, setPass] = useState('');
+	const [password, setPass] = useState('');
 	const [name, setName] = useState('');
 	const [addUser, { error, data }] = useMutation(ADD_USER);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(email, pass, name);
+		console.log(email, password, name);
 		try {
 			const { data } = await addUser({
-				variables: { email, username: name, password: pass },
+				variables: { email, username: name, password: password },
 			});
 
 			Auth.login(data.addUser.token);
@@ -33,7 +33,7 @@ const Signup = (props) => {
 				<Link to='/Dashboard'>Dashboard</Link>
 			) : (
 				<form className='signup-form' onSubmit={handleSubmit}>
-					<label for='name'>Name</label>
+					<label htmlFor='name'>Name</label>
 					<input
 						value={name}
 						onChange={(e) => setName(e.target.value)}
@@ -41,7 +41,7 @@ const Signup = (props) => {
 						placeholder='your name'
 						id='name'
 					/>
-					<label for='email'>Email</label>
+					<label htmlFor='email'>Email</label>
 					<input
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
@@ -49,9 +49,9 @@ const Signup = (props) => {
 						placeholder='email.com'
 						id='email'
 					/>
-					<label for='password'>Password</label>
+					<label htmlFor='password'>Password</label>
 					<input
-						value={pass}
+						value={password}
 						onChange={(e) => setPass(e.target.value)}
 						type='password'
 						placeholder='******'
