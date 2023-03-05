@@ -8,6 +8,7 @@ const projectSchema = new Schema({
 	projectTitle: {
 		type: String,
 		required: true,
+		allowNull: false
 	},
 	tasks: [Task.schema],
 });

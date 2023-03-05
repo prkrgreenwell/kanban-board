@@ -8,24 +8,26 @@ export const QUERY_USER = gql`
 			email
 			projects {
 				_id
-				title
+				projectTitle
 			}
 		}
 	}
 `;
 export const QUERY_PROJECTS = gql`
 	query projects($userId: ID!) {
-		_id
-		title
-		user {
-			_id
-			username
-			email
-		}
-		tasks {
+		projects(userId: $userId) {
 			_id
 			title
-			projectId
+			user {
+				_id
+				username
+				email
+			}
+			tasks {
+				_id
+				title
+				projectId
+			}
 		}
 	}
 `;
@@ -38,7 +40,7 @@ export const QUERY_ME = gql`
 			email
 			projects {
 				_id
-				title
+				projectTitle
 			}
 		}
 	}
