@@ -6,6 +6,7 @@ const typeDefs = gql`
 		username: String
 		email: String
 		password: String
+        projects: [Project!]!
 	}
 
 	type Project {
@@ -14,6 +15,7 @@ const typeDefs = gql`
 		userId: ID
 		user: User
 		tasks: [Task]
+        title: String
 	}
 
 	type Task {
