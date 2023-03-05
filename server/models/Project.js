@@ -5,9 +5,10 @@ const Task = require('./Task');
 
 const projectSchema = new Schema({
 	//This is the name of the project
-	title: {
+	projectTitle: {
 		type: String,
 		required: true,
+		allowNull: false
 	},
 	tasks: [Task.schema],
 });

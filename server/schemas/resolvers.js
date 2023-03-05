@@ -18,6 +18,17 @@ const resolvers = {
 			return projects;
 		},
 
+		user: async (parent, { username }) => {
+			return User.findOne({ username }).populate("projects");
+		},
+
+		me: async (parent, args, context) => {
+			if (context.user) {
+				return User.findOne({ _id: context.user._id }).populate("projects");
+			}
+			throw new AuthenticationError("You need to be logged in!");
+		},
+
 		//Fetch all tasks for a project
 		tasks: async (parent, { projectId }, { user }) => {
 			if (!user) {
@@ -41,26 +52,34 @@ const resolvers = {
 	Project: {
 		//Fetch all tasks associated with a project
 		tasks: async (parent) => {
-		  const tasks = await Task.find({ projectId: parent._id });
-		  return tasks;
-		},
-	  
-		//Fetch the user associated with a project
-		user: async (parent) => {
-		  const user = await User.findById(parent.userId);
-		  return user;
-		},
-	  },
-	Mutation: {
-		createProject: async (parent, { title }, context) => {
-			if (!context.user) {
-				throw new AuthenticationError("Not logged in");
-			}
-			const project = await Project.create({ title, userId: context.user._id });
-			return project;
+			const tasks = await Task.find({ projectId: parent._id });
+			return tasks;
 		},
 
-		createTask: async (parent, { title, projectId }, context) => {
+		//Fetch the user associated with a project
+		user: async (parent) => {
+			const user = await User.findById(parent.userId);
+			return user;
+		},
+	},
+	Mutation: {
+		addProject: async (_parent, { projectTitle }, context) => {
+			if (context.user) {
+				const project = await Project.create({
+					projectTitle,
+					userId: context.user.username,
+				});
+
+				await User.findByIdAndUpdate(
+					{ _id: context.user._id },
+					{ $addToSet: { projects: project._id } }
+				);
+				return project;
+			}
+			throw new AuthenticationError("Not logged in");
+		},
+
+		addTask: async (parent, { title, projectId }, context) => {
 			if (!context.user) {
 				throw new AuthenticationError("Not logged in");
 			}
@@ -68,7 +87,6 @@ const resolvers = {
 			return task;
 		},
 		login: async (parent, { email, password }) => {
-			console.log("test")
 			const user = await User.findOne({ email });
 
 			if (!user) {

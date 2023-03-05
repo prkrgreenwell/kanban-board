@@ -9,15 +9,21 @@ const Login = (props) => {
 	const [email, setEmail] = useState('');
 	const [password, setPass] = useState('');
 	const [login, { error, data }] = useMutation(LOGIN_USER);
-	console.log(login)
+	console.log(login);
+
+	const handleChange = (event) => {
+		const { name, value } = event.target;
+		
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		console.log(email, password);
 		try {
 			const { data } = await login({
-				variables: { email, password},
+				variables: { email, password },
 			});
-console.log(data)
+			console.log(data);
 			Auth.login(data.login.token);
 		} catch (e) {
 			console.error(e);
@@ -28,7 +34,10 @@ console.log(data)
 		<div className='auth-form'>
 			{' '}
 			{data ? (
-				<Link to='/Dashboard'>dashboard</Link>
+				<p>
+					Success! You may now head{' '}
+					<Link to='/Dashboard'>back to the homepage.</Link>
+				</p>
 			) : (
 				<form className='login-form' onSubmit={handleSubmit}>
 					<label htmlFor='email'>Email</label>
