@@ -1,7 +1,7 @@
 /** @format */
 
-const { Schema, model } = require("mongoose");
-const Task = require("./Task");
+const { Schema, model } = require('mongoose');
+const Task = require('./Task');
 
 const projectSchema = new Schema({
 	//This is the name of the project
@@ -9,14 +9,9 @@ const projectSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	tasks: [
-		{
-			type: Schema.Types.ObjectId,
-			ref: "Task",
-		},
-	],
+	tasks: [Task.schema],
 });
 
-const Project = model("Project", projectSchema);
+const Project = model('Project', projectSchema);
 
 module.exports = Project;

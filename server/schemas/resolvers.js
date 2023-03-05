@@ -87,7 +87,6 @@ const resolvers = {
 			return task;
 		},
 		login: async (parent, { email, password }) => {
-			console.log("test");
 			const user = await User.findOne({ email });
 
 			if (!user) {

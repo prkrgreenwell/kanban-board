@@ -3,12 +3,13 @@ import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROJECT } from "../utils/mutations";
 import { QUERY_PROJECTS, QUERY_USER, QUERY_ME } from "../utils/queries";
+import ProjectList from "../components/ProjectList";
 
 import Auth from "../utils/auth";
 
 const Dashboard = () => {
 	const [projectTitle, setProjectTitle] = useState("");
-  const { username: userParam } = useParams();
+	const { username: userParam } = useParams();
 
 	const [addProject, { error }] = useMutation(ADD_PROJECT, {
 		update(cache, { data: { addProject } }) {
@@ -34,7 +35,7 @@ const Dashboard = () => {
 	const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
 		variables: { user: userParam },
 	});
-  const user = data?.me || data?.user || {};
+	const user = data?.me || data?.user || {};
 	const projects = data?.projects || [];
 
 	if (loading) {
@@ -55,15 +56,15 @@ const Dashboard = () => {
 
 		try {
 			const { data } = await addProject({
-        variables: {
-          projectTitle,
-					userId: Auth.getProfile().data.username
+				variables: {
+					projectTitle,
+					userId: Auth.getProfile().data.username,
 				},
 			});
 			setProjectTitle("");
 		} catch (err) {
 			console.error(err);
-      console.log(err.graphQLErrors[0].message);
+			console.log(err.graphQLErrors[0].message);
 		}
 	};
 
@@ -77,16 +78,14 @@ const Dashboard = () => {
 				<h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
 					Viewing {userParam ? `${user.username}'s` : "your"} profile.
 				</h2>
-
 				<div className="col-12 col-md-10 mb-5">
-					<h3>Projects:</h3>
-					<ul>
-						{projects.map((project) => (
-							<li key={project._id}>{project.title}</li>
-						))}
-					</ul>
+					<ProjectList
+						projects={user.projects}
+						projectTitle={`${user.username}'s projects...`}
+						showTitle={false}
+						showUsername={false}
+					/>
 				</div>
-
 				{!userParam && (
 					<div
 						className="col-12 col-md-10 mb-3 p-3"
