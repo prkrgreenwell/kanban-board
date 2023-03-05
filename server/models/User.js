@@ -1,7 +1,6 @@
 /** @format */
 
-const { Schema, model} = require("mongoose");
-
+const { Schema, model } = require("mongoose");
 
 const bcrypt = require("bcrypt");
 const Project = require("./Project");
@@ -23,7 +22,12 @@ const userSchema = new Schema({
 		required: true,
 		minlength: 5,
 	},
-	projects: [Project.schema],
+	projects: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: "Project",
+		},
+	],
 });
 
 // set up middlware to create password

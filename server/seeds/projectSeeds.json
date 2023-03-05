@@ -13,10 +13,12 @@
 	],
 	"projects": [
 		{
-			"title": "Project 1"
+			"projectTitle": "Project 1",
+			"userId": "user1"
 		},
 		{
-			"title": "Project 2"
+			"projectTitle": "Project 2",
+			"userId": "user2"
 		}
 	],
 	"tasks": [
