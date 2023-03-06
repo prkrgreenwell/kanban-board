@@ -40,15 +40,16 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				<div className='App'>
+				<div className='App d-flex justify-content-center'>
 					<Header />
-					<Routes>
-						<Route path='/' element={<Home />} />
-						<Route path='/login' element={<Login />} />
-						<Route path='/signup' element={<Signup />} />
-						{/* <Route path='/me' element={<Dashboard />} /> */}
-						<Route path='/dashboard' element={<Dashboard />} />
-					</Routes>
+					<div className='d-flex justify-content-center align-self-center'>
+						<Routes>
+							<Route path='/' element={<Home />} />
+							<Route path='/login' element={<Login />} />
+							<Route path='/signup' element={<Signup />} />
+							<Route path='/dashboard' element={<Dashboard />} />
+						</Routes>
+					</div>
 				</div>
 			</Router>
 		</ApolloProvider>
