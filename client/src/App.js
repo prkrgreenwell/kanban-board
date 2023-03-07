@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Header from './components/Header';
+import Board from './pages/Board'
 import {
 	ApolloClient,
 	InMemoryCache,
@@ -48,6 +49,7 @@ function App() {
 						<Route path='/signup' element={<Signup />} />
 						{/* <Route path='/me' element={<Dashboard />} /> */}
 						<Route path='/dashboard' element={<Dashboard />} />
+						<Route path='/projects/:projectId' element={<Board/>} />
 					</Routes>
 				</div>
 			</Router>
