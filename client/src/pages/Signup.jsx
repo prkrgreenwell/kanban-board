@@ -63,9 +63,10 @@ const Signup = (props) => {
 				</form>
 			)}
 
-			<button className='linkBtn' onClick={() => props.onFormSwitch('login')}>
+			<Link className='login-link' to='/Login'>
 				Already have an account? Log in here
-			</button>
+			</Link>
+
 			{error && <div className=''>{error.message}</div>}
 		</div>
 	);

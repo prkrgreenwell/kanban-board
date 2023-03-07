@@ -13,7 +13,6 @@ const Login = (props) => {
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		
 	};
 
 	const handleSubmit = async (e) => {
@@ -61,9 +60,9 @@ const Login = (props) => {
 					</button>
 				</form>
 			)}
-			<button className='linkBtn' onClick={() => props.onFormSwitch('signup')}>
-				Dont Have an account? Sign up here
-			</button>
+			<Link className='login-link' to='/Signup'>
+				Dont have an account? Sign up here
+			</Link>
 			{error && <div className=''>{error.message}</div>}
 		</div>
 	);
