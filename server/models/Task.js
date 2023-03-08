@@ -1,12 +1,16 @@
 /** @format */
 
-const { Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const taskSchema = new Schema({
   task: {
     type: String,
     required: true,
     minlength: 1,
+  },
+  description: {
+    type: String,
+    maxLength: 280,
   },
   project: {
     type: String,
