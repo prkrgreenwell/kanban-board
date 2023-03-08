@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROJECT } from "../utils/mutations";
@@ -10,6 +10,7 @@ import Auth from "../utils/auth";
 const Dashboard = () => {
 	const [projectTitle, setProjectTitle] = useState("");
 	const { username: userParam } = useParams();
+
 
 	const [addProject, { error }] = useMutation(ADD_PROJECT, {
 		update(cache, { data: { addProject } }) {
@@ -35,9 +36,15 @@ const Dashboard = () => {
 	const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
 		variables: { user: userParam },
 	});
+	console.log(data)
+	
+	// useEffect(() => {
+	// 	console.log(data)
+	// },[loading, data, addProject])
+	
 	const user = data?.me || data?.user || {};
 	const projects = data?.projects || [];
-
+	console.log(projects)
 	if (loading) {
 		return <div>Loading...</div>;
 	}
@@ -75,11 +82,10 @@ const Dashboard = () => {
 	return (
 		<div>
 			<div className="flex-row justify-center mb-3">
-			<h2 className="col-12 col-md-10 text-light p-5 mb-5">
-					
-			</h2>
-			
-				<div className="col-12 col-md-10 mb-5  ">
+				<h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
+					Viewing {userParam ? `${user.username}'s` : "your"} profile.
+				</h2>
+				<div className="col-12 col-md-10 mb-5">
 					<ProjectList
 						projects={user.projects}
 						projectTitle={`${user.username}'s projects...`}
@@ -87,7 +93,12 @@ const Dashboard = () => {
 						showUsername={false}
 					/>
 				</div>
-				
+				{!userParam && (
+					<div
+						className="col-12 col-md-10 mb-3 p-3"
+						style={{ border: "1px dotted #1a1a1a" }}
+					></div>
+				)}
 			</div>
 			<div>
 				<form onSubmit={handleAddProject}>
@@ -97,7 +108,7 @@ const Dashboard = () => {
 						value={projectTitle}
 						onChange={handleProjectTitleChange}
 					/>
-					<button className = 'btn btn-lg btn-light m-5'type="submit">Add project</button>
+					<button type="submit">Add project</button>
 				</form>
 			</div>
 		</div>

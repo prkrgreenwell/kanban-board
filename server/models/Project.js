@@ -10,7 +10,7 @@ const projectSchema = new Schema({
 		required: true,
 		allowNull: false
 	},
-	tasks: [Task.schema],
+	tasks: [{ type: Schema.Types.ObjectId, ref: "Task" }],
 });
 
 const Project = model('Project', projectSchema);

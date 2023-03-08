@@ -13,7 +13,7 @@ const resolvers = {
 				throw new AuthenticationError("Not logged in");
 			}
 			const projects = await Project.find({
-				userId: context.user._id,
+				username: "aaron",
 			}).populate("tasks");
 			return projects;
 		},
@@ -64,12 +64,13 @@ const resolvers = {
 	},
 	Mutation: {
 		addProject: async (_parent, { projectTitle }, context) => {
+			console.log(projectTitle)
 			if (context.user) {
 				const project = await Project.create({
 					projectTitle,
 					userId: context.user.username,
 				});
-
+				console.log(project._id)
 				await User.findByIdAndUpdate(
 					{ _id: context.user._id },
 					{ $addToSet: { projects: project._id } }

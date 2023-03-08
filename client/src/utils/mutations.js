@@ -33,3 +33,19 @@ export const ADD_PROJECT = gql`
     }
   }
 `;
+
+export const ADD_TASK = gql`
+  mutation addTask($projectId: ID!, $commentText: String!) {
+    addTask(projectId: $thoughtId, commentText: $commentText) {
+      _id
+      thoughtText
+      thoughtAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+        createdAt
+      }
+    }
+  }
+`;

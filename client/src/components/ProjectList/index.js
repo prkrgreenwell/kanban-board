@@ -15,7 +15,7 @@ const ProjectList = ({
     <div className="col-12 col-md-10 mb-5">
       {showTitle && <h3>{projectTitle || 'Projects'}</h3>}
       <ul>
-        {projects.map((project) => (
+        {projects && projects.map((project) => (
           <li key={project._id}>
             <Link to={`/projects/${project._id}`}>{project.projectTitle}</Link>
           </li>

@@ -14,15 +14,24 @@ export const QUERY_USER = gql`
 	}
 `;
 export const QUERY_PROJECTS = gql`
-	query projects($userId: ID!) {
-		projects(userId: $userId) {
+	query projects($projectId: ID!) {
+		projects(projectId: $projectId) {
 			_id
-			title
-			user {
+			projectTitle
+			tasks {
 				_id
-				username
-				email
+				title
+				projectId
 			}
+		}
+	}
+`;
+
+export const QUERY_PROJECT = gql`
+	query project($projectId: ID!) {
+		project(projectId: $projectId) {
+			_id
+			projectTitle
 			tasks {
 				_id
 				title
