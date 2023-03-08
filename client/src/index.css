@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+li{
+  color: rgb(220, 236, 232);
+  list-style: square;
+  
+}
+.projects{
+  color: white;
+  text-decoration: none;
+  font-size: medium;
+  
+}
+.projects:hover{
+  color: rgb(14, 83, 70);
+}

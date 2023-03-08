@@ -11,7 +11,7 @@ const Home = () => {
 	return <div id='container'className='container'>
 	
 		<h1 className='kanban display-1 m-4 text-center'>
-			Kanban
+			KanDo
 		</h1>
 		<h2 id='motto' className='m-5 text-center'>Get organized!</h2>
 	
