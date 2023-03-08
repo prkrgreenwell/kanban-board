@@ -80,12 +80,10 @@ const Dashboard = () => {
 	};
 
 	return (
-		<div>
-			<div className="flex-row justify-center mb-3">
-				<h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-					Viewing {userParam ? `${user.username}'s` : "your"} profile.
-				</h2>
-				<div className="col-12 col-md-10 mb-5">
+		<div className="row">
+			
+			
+				<div className="col align-self-center">
 					<ProjectList
 						projects={user.projects}
 						projectTitle={`${user.username}'s projects...`}
@@ -93,22 +91,18 @@ const Dashboard = () => {
 						showUsername={false}
 					/>
 				</div>
-				{!userParam && (
-					<div
-						className="col-12 col-md-10 mb-3 p-3"
-						style={{ border: "1px dotted #1a1a1a" }}
-					></div>
-				)}
-			</div>
+				
+			
 			<div>
 				<form onSubmit={handleAddProject}>
 					<input
+						
 						type="text"
 						placeholder="New project title"
 						value={projectTitle}
 						onChange={handleProjectTitleChange}
 					/>
-					<button type="submit">Add project</button>
+					<button className="btn btn-lg btn-light m-3 " type="submit">Add project</button>
 				</form>
 			</div>
 		</div>
