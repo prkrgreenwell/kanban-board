@@ -66,7 +66,7 @@ const Dashboard = () => {
 			setProjectTitle('');
 		} catch (err) {
 			console.error(err);
-			console.log(err.graphQLErrors[0].message);
+
 		}
 	};
 

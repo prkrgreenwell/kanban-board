@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { ADD_TASK } from '../../utils/mutations';
 
-const AddTask = ({ projectId }) => {
-	const [task, setTask] = useState('');
-	const [project, setProject] = useState('');
-	const [columnId, setColumnId] = useState('');
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_TASK } from "../../utils/mutations";
+
+const AddTask = (props) => {
+	const { projectId, closeModal } = props;
+	const [task, setTask] = useState("");
+	const [project, setProject] = useState("");
+	const [columnId, setColumnId] = useState("");
 
 	const [addTask, { error }] = useMutation(ADD_TASK, {
 		variables: { projectId, task, project, columnId },
+		onCompleted: () => {
+			closeModal();
+		},
+
 	});
 
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
-		if (name === 'task') {
+
+		if (name === "task") {
 			setTask(value);
-		} else if (name === 'project') {
+		} else if (name === "project") {
 			setProject(value);
-		} else if (name === 'columnId') {
+		} else if (name === "columnId") {
+
 			setColumnId(value);
 		}
 	};
@@ -26,15 +34,18 @@ const AddTask = ({ projectId }) => {
 		event.preventDefault();
 		try {
 			await addTask();
-			setTask('');
-			setProject('');
-			setColumnId('');
+
+			setTask("");
+			setProject("");
+			setColumnId("");
+
 		} catch (err) {
 			console.error(err);
 		}
 	};
 
 	return (
+
 		<div className='container d-flex justify-content-center'>
 			<div className='task-form'>
 				<h3>Add Task</h3>
@@ -84,6 +95,7 @@ const AddTask = ({ projectId }) => {
 				</form>
 				{error && <div>Error: {error.message}</div>}
 			</div>
+
 		</div>
 	);
 };
