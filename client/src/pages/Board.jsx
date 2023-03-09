@@ -6,15 +6,18 @@ import AddTask from "../components/AddTask";
 import TaskCard from '../components/TaskCard'
 import Modal from "react-modal";
 
+
 const Board = (props) => {
 	const [showModal, setShowModal] = useState(false);
 	const [task, setTask] = useState({});
 	const { projectId } = useParams();
 	const { id } = useParams();
 
+
 	const { data } = useQuery(QUERY_PROJECT, {
 		variables: { projectId: projectId },
 	});
+
 	const projects = data?.projects || [];
 	console.log(projects);
 
@@ -60,10 +63,12 @@ const Board = (props) => {
 											{task.id && <TaskCard data={data} />}
 										</div>
 									</div>
+
 								</div>
 							</div>
 						</div>
 					</div>
+
 					<div className="col-sm-6 col-md-4 col-xl-4">
 						<div className="card text-bg-dark">
 							<div className="card-body">
@@ -120,6 +125,7 @@ const Board = (props) => {
 											</div>
 										</div>
 									</div>
+
 								</div>
 							</div>
 						</div>
