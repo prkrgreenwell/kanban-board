@@ -33,10 +33,7 @@ const Login = (props) => {
 		<div className='auth-form'>
 			{' '}
 			{data ? (
-				<p>
-					Success! You may now head{' '}
-					<Link to='/Dashboard'>back to the homepage.</Link>
-				</p>
+				<p>Logging In...</p>
 			) : (
 				<form className='login-form' onSubmit={handleSubmit}>
 					<label htmlFor='email'>Email</label>

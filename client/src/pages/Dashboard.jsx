@@ -1,16 +1,17 @@
-import React, { useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
-import { useMutation, useQuery } from "@apollo/client";
-import { ADD_PROJECT } from "../utils/mutations";
-import { QUERY_PROJECTS, QUERY_USER, QUERY_ME } from "../utils/queries";
-import ProjectList from "../components/ProjectList";
+/** @format */
 
-import Auth from "../utils/auth";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useMutation, useQuery } from '@apollo/client';
+import { ADD_PROJECT } from '../utils/mutations';
+import { QUERY_PROJECTS, QUERY_USER, QUERY_ME } from '../utils/queries';
+import ProjectList from '../components/ProjectList';
+
+import Auth from '../utils/auth';
 
 const Dashboard = () => {
-	const [projectTitle, setProjectTitle] = useState("");
+	const [projectTitle, setProjectTitle] = useState('');
 	const { username: userParam } = useParams();
-
 
 	const [addProject, { error }] = useMutation(ADD_PROJECT, {
 		update(cache, { data: { addProject } }) {
@@ -36,18 +37,18 @@ const Dashboard = () => {
 	const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
 		variables: { user: userParam },
 	});
-	
 	const user = data?.me || data?.user || {};
 	const projects = data?.projects || [];
+
 	if (loading) {
 		return <div>Loading...</div>;
 	}
 
 	if (!Auth.loggedIn()) {
 		return (
-			<h4>
-				You need to be logged in to see this. Use the navigation links above to
-				sign up or log in!
+			<h4 className='unauthorized'>
+				You need to be logged in to see this. Use the navigation links above to sign
+				up or log in!
 			</h4>
 		);
 	}
@@ -62,7 +63,7 @@ const Dashboard = () => {
 					userId: Auth.getProfile().data.username,
 				},
 			});
-			setProjectTitle("");
+			setProjectTitle('');
 		} catch (err) {
 			console.error(err);
 
@@ -74,10 +75,10 @@ const Dashboard = () => {
 	};
 
 	return (
-		<div className="row">
-			
-			
-				<div className="col align-self-center">
+		<div>
+			<div className='d-flex container dashboard-container'>
+				<h2 className='dashboard-title'>Dashboard</h2>
+				<div className=''>
 					<ProjectList
 						projects={user.projects}
 						projectTitle={`${user.username}'s projects...`}
@@ -85,18 +86,18 @@ const Dashboard = () => {
 						showUsername={false}
 					/>
 				</div>
-				
-			
+			</div>
 			<div>
 				<form onSubmit={handleAddProject}>
 					<input
-						
-						type="text"
-						placeholder="New project title"
+						type='text'
+						placeholder='New project title'
 						value={projectTitle}
 						onChange={handleProjectTitleChange}
 					/>
-					<button className="btn btn-lg btn-light m-3 " type="submit">Add project</button>
+					<button className='btn btn-light m-2' type='submit'>
+						Add project
+					</button>
 				</form>
 			</div>
 		</div>

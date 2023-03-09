@@ -9,17 +9,40 @@
 
 .auth-form,
 .login-form,
-.signup-form {
+.signup-form,
+.task-form {
 	display: flex;
 	flex-direction: column;
 	align-self: center;
 }
 
-.auth-form {
+.auth-form,
+.task-form {
 	padding: 5rem;
 	border: 1px solid white;
 	border-radius: 10px;
 	margin: 0.5rem;
+}
+
+.task-form {
+	margin-top: 5rem;
+	padding: 1rem 10rem;
+}
+
+.task-form h3 {
+	color: white;
+	align-self: center;
+}
+
+.task-form button,
+.task-form button:hover {
+	background-color: #2f3e46;
+	color: white;
+	margin-top: 0.5rem;
+}
+
+.task-form button:hover {
+	opacity: 50%;
 }
 
 label {
@@ -76,18 +99,53 @@ header {
 	color: white;
 	opacity: 50%;
 }
-#container{
+
+/* Dashboard Styles */
+
+.dashboard-container {
+	margin-top: 10rem;
+	flex-direction: column;
+	align-items: center;
+}
+
+.dashboard-title {
+	color: white;
+	padding: 1rem;
+	border: 1px Solid white;
+	border-radius: 8px;
+}
+
+.unauthorized {
+	color: red;
+	border-radius: 8px;
+	background-color: black;
+	padding: 0;
+	margin-bottom: 60rem;
+	padding: 1rem;
+	margin-top: 15rem;
+}
+
+li {
+	color: rgb(220, 236, 232);
+	list-style: square;
+	font-size: 25px;
+}
+.projects {
+	color: white;
+	text-decoration: none;
+	font-size: 20px;
+}
+.projects:hover {
+	color: rgb(14, 83, 70);
+}
+
+/* KanBan Styles */
+
+.kanban,
+#motto {
+	color: white;
+}
+
+#container {
 	align-self: center;
-}
-
-.kanban{
-	color: white;
-	
-	
-	
-}
-
-#motto{
-	color: white;
-	
 }
