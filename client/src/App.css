@@ -91,3 +91,30 @@ header {
 	color: white;
 	
 }
+
+.board {
+	display: flex;
+	
+	width: 100%;
+	align-self:center;
+	
+	padding: 15px;
+	height: fit-content;
+	
+	
+
+}
+.column{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 10px;
+	background-color: white;
+	justify-content: space-between;
+	height: fit-content;
+}
+
+.board .card {
+	padding: 15px 25px;
+	background-color: #33595d;
+}

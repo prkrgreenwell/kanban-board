@@ -3,206 +3,44 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_PROJECT } from '../utils/queries';
 import AddTask from '../components/AddTask';
+import Card from '../components/Card/Card';
+import Column from '../components/Column/Column'
 
-const Board = () => {
+
+function Board ()  {
+
+  
   const { projectId } = useParams();
 
   const { data } = useQuery(QUERY_PROJECT, {
     variables: { projectId: projectId },
-    
   });
 
+  
+  
+  
+ 
+
   return (
-    <div>
-      <div className="container-fluid pt-3">
-      
-      <div className="row flex-row flex-sm-nowrap py-3">
-        <div className="col-sm-6 col-md-4 col-xl-4">
-          <div className="card text-bg-dark">
-            <div className="card-body">
-              <div className="container d-flex justify-content-between">
-                <h6 className="card-title text-uppercase text-truncate py-2">
-                  To Do
-                </h6>
-                <button type="button" className="btn btn-dark ">
-                  +
-                </button>
-              </div>
-              <div className="items border border-light">
-                <div className="card text-bg-secondary">
-                  <div className="card-body p-2">
-                    <div className="card-title">TSK-154</div>
-                    <p>This is a description of a item on the board.</p>
-                    <div className="buttons">
-                      <button className="btn btn-danger btn-sm">
-                        Move back
-                      </button>
-                      <button className="btn btn-success btn-sm">
-                        Move up
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div> &nbsp; </div>
-                <div className="card text-bg-secondary">
-                  <div className="card-body p-2">
-                    <div className="card-title">TSK-154</div>
-                    <p>This is a description of a item on the board.</p>
-                    <div className="buttons">
-                      <button className="btn btn-danger btn-sm">
-                        Move back
-                      </button>
-                      <button className="btn btn-success btn-sm">
-                        Move up
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div> &nbsp; </div>
-                <div className="card text-bg-secondary">
-                  <div className="card-body p-2">
-                    <div className="card-title">TSK-154</div>
-                    <p>This is a description of a item on the board.</p>
-                    <div className="buttons">
-                      <button className="btn btn-danger btn-sm">
-                        Move back
-                      </button>
-                      <button className="btn btn-success btn-sm">
-                        Move up
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div> &nbsp; </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-xl-4">
-          <div className="card text-bg-dark">
-            <div className="card-body">
-              <div className="container d-flex justify-content-between">
-                <h6 className="card-title text-uppercase text-truncate py-2">
-                  In Progress
-                </h6>
-                <button type="button" className="btn btn-dark ">
-                  +
-                </button>
-              </div>
-              <div className="items border border-light">
-                <div className="card text-bg-secondary">
-                  <div className="card-body p-2">
-                    <div className="card-title">TSK-154</div>
-                    <p>This is a description of a item on the board.</p>
-                    <div className="buttons">
-                      <button className="btn btn-danger btn-sm">
-                        Move back
-                      </button>
-                      <button className="btn btn-success btn-sm">
-                        Move up
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div> &nbsp; </div>
-                <div className="card text-bg-secondary">
-                  <div className="card-body p-2">
-                    <div className="card-title">TSK-154</div>
-                    <p>This is a description of a item on the board.</p>
-                    <div className="buttons">
-                      <button className="btn btn-danger btn-sm">
-                        Move back
-                      </button>
-                      <button className="btn btn-success btn-sm">
-                        Move up
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div> &nbsp; </div>
-                <div className="card text-bg-secondary">
-                  <div className="card-body p-2">
-                    <div className="card-title">TSK-154</div>
-                    <p>This is a description of a item on the board.</p>
-                    <div className="buttons">
-                      <button className="btn btn-danger btn-sm">
-                        Move back
-                      </button>
-                      <button className="btn btn-success btn-sm">
-                        Move up
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div> &nbsp; </div>
-              </div>
-            </div>
-          </div>
-        </div>{" "}
-        <div className="col-sm-6 col-md-4 col-xl-4">
-          <div className="card text-bg-dark">
-            <div className="card-body">
-              <div className="container d-flex justify-content-between">
-                <h6 className="card-title text-uppercase text-truncate py-2">
-                  Completed
-                </h6>
-                <button type="button" className="btn btn-dark ">
-                  +
-                </button>
-              </div>
-              <div className="items border border-light">
-                <div className="card text-bg-secondary">
-                  <div className="card-body p-2">
-                    <div className="card-title">TSK-154</div>
-                    <p>This is a description of a item on the board.</p>
-                    <div className="buttons">
-                      <button className="btn btn-danger btn-sm">
-                        Move back
-                      </button>
-                      <button className="btn btn-success btn-sm">
-                        Move up
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div> &nbsp; </div>
-                <div className="card text-bg-secondary">
-                  <div className="card-body p-2">
-                    <div className="card-title">TSK-154</div>
-                    <p>This is a description of a item on the board.</p>
-                    <div className="buttons">
-                      <button className="btn btn-danger btn-sm">
-                        Move back
-                      </button>
-                      <button className="btn btn-success btn-sm">
-                        Move up
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div> &nbsp; </div>
-                <div className="card text-bg-secondary">
-                  <div className="card-body p-2">
-                    <div className="card-title">TSK-154</div>
-                    <p>This is a description of a item on the board.</p>
-                    <div className="buttons">
-                      <button className="btn btn-danger btn-sm">
-                        Move back
-                      </button>
-                      <button className="btn btn-success btn-sm">
-                        Move up
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div> &nbsp; </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-   
+    <div className='board'>
+      <Column id="todo" className="column">
+        <Card id="task" className='card' draggable = "true">
+          <p> task 1</p>
+        </Card>
+      </Column>
+      <Column id="doing" className="column">
+        <Card id="task" className='card' draggable = "true">
+          <p> task 2</p>
+        </Card>
+      </Column>
+      <Column id="done" className="column">
+        <Card id="task" className='card' draggable = "true">
+          <p> task 3</p>
+        </Card>
+      </Column>
+    
+
+
     
      </div>
    

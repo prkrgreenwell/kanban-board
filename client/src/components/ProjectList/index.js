@@ -8,7 +8,7 @@ const ProjectList = ({
   showUsername = true,
 }) => {
   if (!projects) {
-    return <h3>No Projects Yet</h3>;
+    return <h3 className="text-center">No Projects Yet</h3>;
   }
 
   
