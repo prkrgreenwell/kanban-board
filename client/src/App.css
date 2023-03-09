@@ -25,12 +25,12 @@
 }
 
 .task-form {
+	color: #2f3e46;
 	margin-top: 5rem;
 	padding: 1rem 10rem;
 }
 
 .task-form h3 {
-	color: white;
 	align-self: center;
 }
 
@@ -48,7 +48,6 @@
 label {
 	text-align: left;
 	padding: 0.25rem 0;
-	color: white;
 }
 
 input {
