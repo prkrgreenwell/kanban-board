@@ -13,9 +13,18 @@ const resolvers = {
 				throw new AuthenticationError("Not logged in");
 			}
 			const projects = await Project.find({
-				userId: context.user._id,
+				username: "aaron",
 			}).populate("tasks");
 			return projects;
+		},
+
+		//Get project by Id
+		project: async (parent, { projectId }) => {
+			if (!projectId) {
+				throw new AuthenticationError("No project with this ID");
+			}
+			const project = await Project.findById(projectId).populate("tasks");
+			return project;
 		},
 
 		user: async (parent, { username }) => {
@@ -30,7 +39,7 @@ const resolvers = {
 		},
 
 		//Fetch all tasks for a project
-		tasks: async (parent, { projectId }, { user }) => {
+		tasks: async (parent, { projectId }) => {
 			if (!user) {
 				throw new AuthenticationError("You need to be logged in view tasks.");
 			}
@@ -64,12 +73,13 @@ const resolvers = {
 	},
 	Mutation: {
 		addProject: async (_parent, { projectTitle }, context) => {
+			console.log(projectTitle);
 			if (context.user) {
 				const project = await Project.create({
 					projectTitle,
 					userId: context.user.username,
 				});
-
+				console.log(project._id);
 				await User.findByIdAndUpdate(
 					{ _id: context.user._id },
 					{ $addToSet: { projects: project._id } }
@@ -79,13 +89,13 @@ const resolvers = {
 			throw new AuthenticationError("Not logged in");
 		},
 
-		addTask: async (parent, { title, projectId }, context) => {
+		addTask: async (parent, { projectId, task, project, columnId }, context) => {
 			if (!context.user) {
-				throw new AuthenticationError("Not logged in");
+			  throw new AuthenticationError("Not logged in");
 			}
-			const task = await Task.create({ title, projectId });
-			return task;
-		},
+			const addNewTask = await Task.create({ projectId, task, project, columnId });
+			return addNewTask;
+		  },
 		login: async (parent, { email, password }) => {
 			const user = await User.findOne({ email });
 

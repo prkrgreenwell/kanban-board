@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+li{
+  color: rgb(220, 236, 232);
+  list-style: square;
+  margin-top: 45px;
+  font-size: 25px;
+  padding-left: 10px;
+  
+}
+.projects{
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  
+}
+.projects:hover{
+  color: rgb(14, 83, 70);
+}
+

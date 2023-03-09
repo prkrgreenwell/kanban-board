@@ -17,7 +17,7 @@ const taskSchema = new Schema({
     required: true,
   },
   columnId: {
-    type: Number,
+    type: String,
     required: true,
   },
 });

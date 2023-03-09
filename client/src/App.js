@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Header from './components/Header';
+import Board from './pages/Board'
 import {
 	ApolloClient,
 	InMemoryCache,
@@ -40,14 +41,14 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				<div className='App'>
+				<div className='App d-flex justify-content-center'>
 					<Header />
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/login' element={<Login />} />
 						<Route path='/signup' element={<Signup />} />
-						{/* <Route path='/me' element={<Dashboard />} /> */}
 						<Route path='/dashboard' element={<Dashboard />} />
+						<Route path='/projects/:projectId' element={<Board/>} />
 					</Routes>
 				</div>
 			</Router>

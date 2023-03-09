@@ -20,8 +20,9 @@ const typeDefs = gql`
 
 	type Task {
 		_id: ID
-		title: String
-		projectId: String
+		task: String
+		project: String
+		columnId: String
 	}
 
 	type Auth {
@@ -31,14 +32,15 @@ const typeDefs = gql`
 
 	type Query {
         user(username: String!): User
-		projects: [Project]
+		projects(projectId: ID!): [Project!]!
+		project(projectId: ID!): Project
 		tasks(projectId: ID!): [Task]
         me: User
 	}
 
 	type Mutation {
 		addProject(projectTitle: String!): Project
-		addTask(title: String!, projectId: ID!): Task
+		addTask(task: String!, projectId: ID!, project: String!, columnId: String!): Task
 		addUser(username: String!, email: String!, password: String!): Auth
 		login(email: String!, password: String!): Auth
 	}
