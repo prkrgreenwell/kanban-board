@@ -15,7 +15,11 @@ function Board (props)  {
     const dragOver = e => {
       e.preventDefault();
     }
-    
+    const dragEnd = e => {
+        if (e.target.style.display === 'none') {
+          e.target.style.display = 'block';
+        }
+      }
   
     
     
@@ -28,6 +32,7 @@ function Board (props)  {
       className={props.className}
       onDrop={drop}
       onDragOver={dragOver}
+      onDragEnd={dragEnd}
       >
         
        {props.children}

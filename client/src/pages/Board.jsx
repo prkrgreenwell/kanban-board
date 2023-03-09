@@ -23,6 +23,7 @@ function Board ()  {
 
   return (
     <div className='board'>
+      
       <Column id="todo" className="column">
         <Card id="task" className='card' draggable = "true">
           <p> task 1</p>
