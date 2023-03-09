@@ -36,15 +36,9 @@ const Dashboard = () => {
 	const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
 		variables: { user: userParam },
 	});
-	console.log(data)
-	
-	// useEffect(() => {
-	// 	console.log(data)
-	// },[loading, data, addProject])
 	
 	const user = data?.me || data?.user || {};
 	const projects = data?.projects || [];
-	console.log(projects)
 	if (loading) {
 		return <div>Loading...</div>;
 	}

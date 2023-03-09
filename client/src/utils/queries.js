@@ -34,8 +34,9 @@ export const QUERY_PROJECT = gql`
 			projectTitle
 			tasks {
 				_id
-				title
-				projectId
+				task
+				project
+				columnId	
 			}
 		}
 	}
