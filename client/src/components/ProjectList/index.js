@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const ProjectList = ({
 	projects,
@@ -12,12 +12,12 @@ const ProjectList = ({
 	}
 
 	return (
-		<div className='mb-4'>
+		<div className="mb-4">
 			<ul>
 				{projects &&
 					projects.map((project) => (
 						<li key={project._id}>
-							<Link className='projects' to={`/projects/${project._id}`}>
+							<Link className="projects" to={`/projects/${project._id}`}>
 								{project.projectTitle}
 							</Link>
 						</li>

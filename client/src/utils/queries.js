@@ -33,11 +33,21 @@ export const QUERY_PROJECT = gql`
 			_id
 			projectTitle
 			tasks {
-				_id
 				task
-				project
-				columnId	
+				taskDescription
+				columnId
 			}
+		}
+	}
+`;
+
+export const QUERY_TASKS = gql`
+	query tasks($projectId: ID!) {
+		tasks(projectId: $projectId) {
+			task
+			taskDescription
+			columnId
+			projectId
 		}
 	}
 `;
