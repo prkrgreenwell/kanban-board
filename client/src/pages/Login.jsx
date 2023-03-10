@@ -11,10 +11,6 @@ const Login = (props) => {
 	const [login, { error, data }] = useMutation(LOGIN_USER);
 	console.log(login);
 
-	const handleChange = (event) => {
-		const { name, value } = event.target;
-	};
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		console.log(email, password);

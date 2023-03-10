@@ -35,11 +35,20 @@ export const ADD_PROJECT = gql`
 `;
 
 export const ADD_TASK = gql`
-	mutation addTask($projectId: ID!, $task: String!, $project: String! $columnId: String!) {
-		addTask(projectId: $projectId, task: $task, project: $project, columnId: $columnId) {
-			_id
+	mutation addTask(
+		$projectId: ID!
+		$task: String!
+		$taskDescription: String!
+		$columnId: String!
+	) {
+		addTask(
+			projectId: $projectId
+			task: $task
+			taskDescription: $taskDescription
+			columnId: $columnId
+		) {
 			task
-			project
+			taskDescription
 			columnId
 		}
 	}

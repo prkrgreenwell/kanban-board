@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_PROJECT } from '../utils/mutations';
@@ -13,7 +13,7 @@ const Dashboard = () => {
 	const [projectTitle, setProjectTitle] = useState('');
 	const { username: userParam } = useParams();
 
-	const [addProject, { error }] = useMutation(ADD_PROJECT, {
+	const [addProject] = useMutation(ADD_PROJECT, {
 		update(cache, { data: { addProject } }) {
 			try {
 				const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
@@ -38,7 +38,6 @@ const Dashboard = () => {
 		variables: { user: userParam },
 	});
 	const user = data?.me || data?.user || {};
-	const projects = data?.projects || [];
 
 	if (loading) {
 		return <div>Loading...</div>;

@@ -3,23 +3,24 @@
 const { Schema, model } = require("mongoose");
 
 const taskSchema = new Schema({
-  task: {
-    type: String,
-    required: true,
-    minlength: 1,
-  },
-  description: {
-    type: String,
-    maxLength: 280,
-  },
-  project: {
-    type: String,
-    required: true,
-  },
-  columnId: {
-    type: String,
-    required: true,
-  },
+	task: {
+		type: String,
+		required: true,
+		minlength: 1,
+	},
+	taskDescription: {
+		type: String,
+		required: true,
+	},
+	columnId: {
+		type: String,
+		required: true,
+	},
+	projectId: {
+		type: Schema.Types.ObjectId,
+		ref: "Project",
+		required: true,
+	},
 });
 
 const Task = model("Task", taskSchema);
